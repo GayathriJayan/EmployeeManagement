@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EmployeeViewModel>
+
+<h3 class="display-4">Employees</h3>
+<button class="btn btn-success" id="CreateEmployee"> Create New Employee</button>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                <b>Id</b>
+            </td>
+            <td>
+                <b>Name</b>
+            </td>
+            <td>
+                <b>Department</b>
+            </td>
+            <td>
+            </td>
+        </tr>
+
+    </thead>
+    @foreach (var employee in Model)
+    {
+<tr>
+    <td>@employee.Id</td>
+    <td>@employee.Name</td>
+    <td>@employee.Department</td>
+    <td>
+        <button class="btn btn-primary employeeDetails" data-id="@employee.Id"> Details</button>
+        <button class="btn btn-info employeeEdit" data-id="@employee.Id"> Edit</button>
+        <button class="btn btn-danger employeeDelete" data-id="@employee.Id"> Delete</button>
+    </td>
+</tr>}
+</table>
+
+<div id="EmployeeCard">
+
+</div>
+
+    <div id="UpdateCard">
+
+        <style>
+            #EmployeeCard {
+                display: none;
+            }
+        </style>
+        <form method="post">
+            <label for="UpdateName"> Name:</label>
+            <input type="text" id="name" name="Name" />
+            <div>
+                <label for="UpdateDepartment"> Department:</label>
+                <input type="text" name="Department" />
+            </div>
+            <div>
+                <label for="UpdateAge"> Age:</label>
+                <input type="text" name="Age" />
+            </div>
+            <div>
+                <label for="UpdateAddress"> Address:</label>
+                <input type="text" name="Address" />
+            </div>
+            <div>
+                <input type="submit" name="submit" />
+            </div>
+
+        </form>
+    </div>
+ 
+    @section Scripts{
+        <script src="~/js/employee.js"></script>
+    }
