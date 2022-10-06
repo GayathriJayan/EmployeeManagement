@@ -23,8 +23,8 @@ namespace EmployeeManagement.API.Controllers
            _employeeService = employeeService;
         }
 
-        [HttpGet]
-        [Route("get-all")]
+        [HttpGet("get-all")]
+    
         public IActionResult GetEmployees()
         {
             try
@@ -40,8 +40,8 @@ namespace EmployeeManagement.API.Controllers
            
         }
 
-        [HttpGet]
-        [Route("employees/{Id}")]
+        [HttpGet("employees/{Id}")]
+  
         public IActionResult GetEmployeeById([FromRoute] int Id)
         
         {
@@ -65,14 +65,14 @@ namespace EmployeeManagement.API.Controllers
             }
         }
 
-        [HttpPost("employee/test")]
+        [HttpPost("employee")]
         public IActionResult InsertEmployee([FromBody] Models.EmployeeDetailedViewModel employeeDetailedView)
         {
             try
             {
                 var employeeDetail = new EmployeeDto()
                 {
-                   
+                    Id= employeeDetailedView.Id,
                     Name = employeeDetailedView.Name,
                     Department = employeeDetailedView.Department,
                     Age = employeeDetailedView.Age,
@@ -86,8 +86,7 @@ namespace EmployeeManagement.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, exception.Message);
             }
         }
-        [HttpPut]
-        [Route("employee/{id}")]
+        [HttpPut("employee-update")]     
         public IActionResult UpdateEmployee([FromBody] Models.EmployeeDetailedViewModel employeeDetailedView)
         {
             try
@@ -108,9 +107,8 @@ namespace EmployeeManagement.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, exception.Message);
             }
         }
-        [HttpDelete]
-        [Route("employees/{id}")]
-
+        [HttpDelete("employees/{id}")]
+      
         public IActionResult DeleteEmployee([FromRoute] int id)
         {
             try

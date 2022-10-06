@@ -1,24 +1,29 @@
 ﻿@model IEnumerable<EmployeeViewModel>
 
-<h3 class="display-4">Employees</h3>
-<button class="btn btn-success" id="CreateEmployee"> Create New Employee</button>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <td>
-                <b>Id</b>
-            </td>
-            <td>
-                <b>Name</b>
-            </td>
-            <td>
-                <b>Department</b>
-            </td>
-            <td>
-            </td>
-        </tr>
+    <body style="background-color:#ffffff">
 
-    </thead>
+
+        <div id="employeeList">
+            <input type="hidden" id="hdnType" />
+            <h3 class="display-4">Employees</h3>
+            <button class="btn btn-success" id="CreateEmployee"> Create New Employee</button>
+            <table class="table table-striped" border="1">
+                <thead>
+                    <tr>
+                        <td>
+                            <b>Id</b>
+                        </td>
+                        <td>
+                            <b>Name</b>
+                        </td>
+                        <td>
+                            <b>Department</b>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </thead>
+                @if (Model != null && Model.Count() > 0)
     @foreach (var employee in Model)
     {
 <tr>
@@ -30,42 +35,58 @@
         <button class="btn btn-info employeeEdit" data-id="@employee.Id"> Edit</button>
         <button class="btn btn-danger employeeDelete" data-id="@employee.Id"> Delete</button>
     </td>
-</tr>}
-</table>
-
-<div id="EmployeeCard">
-
-</div>
-
-    <div id="UpdateCard">
+</tr>
+    }
+            </table>
+        </div>
+        <div id="EmployeeCard">
+        </div>
 
         <style>
-            #EmployeeCard {
-                display: none;
+            input-validation-error {
+                border-color: red;
             }
         </style>
-        <form method="post">
-            <label for="UpdateName"> Name:</label>
-            <input type="text" id="name" name="Name" />
-            <div>
-                <label for="UpdateDepartment"> Department:</label>
-                <input type="text" name="Department" />
-            </div>
-            <div>
-                <label for="UpdateAge"> Age:</label>
-                <input type="text" name="Age" />
-            </div>
-            <div>
-                <label for="UpdateAddress"> Address:</label>
-                <input type="text" name="Address" />
-            </div>
-            <div>
-                <input type="submit" name="submit" />
-            </div>
 
-        </form>
-    </div>
- 
+        <div id="insertUpdate">
+
+            <form class="form-check " >
+                <div class="container-fluid ">
+                    <div class="form-group ">
+                        <input type="hidden" id="hdnEmployeeId" name="employeeId" />
+                        <label for="name" class="form-label"> Name:</label>
+                        <input type="text" id="name" name="Name" class="form-control  col-md-6" pattern="[A-Za-z\s]{1,15}" required />
+                    </div>
+                    <div class="form-group ">
+                        <label for="department" class="form-label"> Department:</label>
+                        <select name="department" id="Department" class="form-control  col-md-6" required>
+                            <option value="">Choose Any Option</option>
+                            <option value="HR">HR</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Testing">Testing</option>
+                            <option value="Finance">Finance</option>
+                            <option value="CEO">CEO</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for="age" class="form-label"> Age:</label>
+                        <input type="number" id="age" name="Age" class="form-control col-md-6" required min="20" max="60" />
+                    </div>
+                    <div class="form-group ">
+                        <label for="address" class="form-label"> Address:</label>
+                        <input type="text" id="address" name="address" class="form-control col-md-6" required />
+                    </div>
+                    <div class="form-group ">
+                        @*<button class="btn btn-success" id="submit" name="submit">Save</button>*@
+                        <input class="btn btn-success" type="submit" value="Submit">
+                    </div>
+                   
+                   
+                   
+                </div>
+            </form>
+        </div>
+    </body>
     @section Scripts{
-        <script src="~/js/employee.js"></script>
+        <script src="~/js/employee.js" ></script>
     }

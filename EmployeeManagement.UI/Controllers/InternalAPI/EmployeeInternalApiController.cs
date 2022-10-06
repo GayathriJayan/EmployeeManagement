@@ -21,7 +21,7 @@ namespace EmployeeManagement.UI.Controllers.InternalAPI
         }
 
 
-        [HttpGet("employees")]       
+        [HttpGet("employees")]
         public IActionResult GetAll()
         {
             try
@@ -43,7 +43,6 @@ namespace EmployeeManagement.UI.Controllers.InternalAPI
             try
             {
                 var employee = _employeeApiClient.GetEmployeeById(employeeId);
-
                 return Ok(employee);
             }
             catch (Exception ex)
@@ -53,12 +52,12 @@ namespace EmployeeManagement.UI.Controllers.InternalAPI
             }
 
         }
-        [HttpPost("employees")]      
-        public IActionResult InsertEmployee([FromBody] EmployeeDetailedViewModel employeeDetailed)
+        [HttpPost("employee")]
+        public IActionResult InsertEmployee(EmployeeDetailedViewModel employee)
         {
             try
             {
-                var employeeDetails = _employeeApiClient.InsertEmployee(employeeDetailed);
+                var employeeDetails = _employeeApiClient.InsertEmployee(employee);
                 return Ok(employeeDetails);
             }
             catch (Exception)
@@ -66,12 +65,12 @@ namespace EmployeeManagement.UI.Controllers.InternalAPI
                 throw;
             }
         }
-        [HttpPut("{id}")]       
-        public IActionResult UpdateEmployee([FromBody] EmployeeDetailedViewModel employeeDetailed)
+        [HttpPost("employee-update")]
+        public IActionResult UpdateEmployee(EmployeeDetailedViewModel employee)
         {
             try
             {
-                var employeeDetails = _employeeApiClient.UpdateEmployee(employeeDetailed);
+                var employeeDetails = _employeeApiClient.UpdateEmployee(employee);
                 return Ok(employeeDetails);
             }
             catch (Exception)

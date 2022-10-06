@@ -195,9 +195,10 @@ figure {
   margin: 0 0 1rem;
 }
 
+
 img {
   vertical-align: middle;
-  border-style: none;
+  border-style: solid;
 }
 
 svg {
@@ -206,7 +207,8 @@ svg {
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
+    border-style: solid;
 }
 
 caption {
@@ -1578,7 +1580,7 @@ pre code {
 .table-primary td,
 .table-primary thead th,
 .table-primary tbody + tbody {
-  border-color: #7abaff;
+  border-color:black
 }
 
 .table-hover .table-primary:hover {

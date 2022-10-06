@@ -11,7 +11,6 @@ namespace EmployeeManagement.Application.Services
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
-
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
             this._employeeRepository = employeeRepository;
@@ -29,12 +28,10 @@ namespace EmployeeManagement.Application.Services
                     Age = employee.Age,
                     Department = employee.Department,
                     Address = employee.Address
-
                 };
                 employeesDto.Add(employeeDto);
             }
-            return employeesDto;
-            
+            return employeesDto;          
         }
         public EmployeeDto GetEmployeeById(int id)
         {
@@ -47,7 +44,6 @@ namespace EmployeeManagement.Application.Services
                 Age = getEmployeeById.Age,
                 Department = getEmployeeById.Department,
                 Address = getEmployeeById.Address
-
             };
             return employees;
         }
@@ -62,9 +58,7 @@ namespace EmployeeManagement.Application.Services
                     Department= employees.Department,
                     Address = employees.Address
                 };
-                _employeeRepository.InsertEmployee(employeData);
-                return true;
-                
+                return _employeeRepository.InsertEmployee(employeData);       
             }
             catch
             {
@@ -82,12 +76,8 @@ namespace EmployeeManagement.Application.Services
                     Age = employees.Age,
                     Department = employees.Department,
                     Address = employees.Address
-
                 };
-              
-                _employeeRepository.UpdateEmployee(employeData);
-                
-                return true;
+                return _employeeRepository.UpdateEmployee(employeData); 
             }
             catch
             {
@@ -96,8 +86,15 @@ namespace EmployeeManagement.Application.Services
         }
         public bool DeleteEmployee(int id)
         {
-            var getEmployeeById = _employeeRepository.DeleteEmployee(id);
-            return true;
+            try
+            {
+                var getEmployeeById = _employeeRepository.DeleteEmployee(id);
+                return true;
+            }
+            catch
+            {
+                throw;
+            }       
         }  
     }
 }

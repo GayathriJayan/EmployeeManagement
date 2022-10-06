@@ -4,6 +4,7 @@ using EmployeeManagement.DataAccess.Contracts;
 using EmployeeManagement.DataAccess.Repository;
 using EmployeeManagement.UI.Configuration;
 using EmployeeManagement.UI.Providers.Contracts;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,18 +24,13 @@ namespace EmployeeManagement.UI
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddHttpClient< IEmployeeApiClient ,employeeApiClient > ();
             services.RegisterDependencies();
             services.AddControllersWithViews();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
